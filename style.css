@@ -1,0 +1,153 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background-color: #ebecf8;
+}
+        
+header {
+    height: 50px;
+    background-color: rgba(75, 79, 195, 0.798);
+    color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+        
+form {
+    background-color: white;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    max-width: 400px;
+}
+
+form h2 {
+    margin-top: 0;
+}
+
+.form-row {
+    display: flex;
+    gap: 10px;
+}
+
+form input[type="text"] {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    min-width: 0;
+}
+
+form input[type="submit"] {
+    background-color: rgba(75, 79, 195, 0.798);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    white-space: nowrap;
+}
+        
+#task {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+        
+.task-item h3 {
+    margin-top: 0;
+    padding: 10px 15px;
+    border-radius: 10px; 
+    font-size: 1.1em;
+    display: inline-block;
+}
+        
+.task-item ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+        
+.task-item li {
+    padding: 12px; 
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: white;
+}
+        
+.task-item li:last-child {
+    margin-bottom: 0;
+}
+        
+.task-item button {
+    border: 1px solid #ddd;
+    border-radius: 8px; 
+    padding: 10px 15px; 
+    cursor: pointer;
+    margin-top: 15px;
+    width: 100%;
+    text-align: center;
+    font-size: 1em; 
+}
+        
+#backlog h3 {
+    color: #a0a0a0; 
+    background-color: rgba(200, 200, 200, 0.5); 
+}
+
+#backlog li {
+    border-left: 6px solid rgba(200, 200, 200, 0.5);
+}
+        
+#progress h3 {
+    color: #4a86e8; 
+    background-color: rgba(160, 185, 240, 0.5); 
+}
+
+#progress li {
+    border-left: 6px solid rgba(160, 185, 240, 0.5);
+}
+        
+        
+#done h3 {
+    color: #6aa84f; 
+    background-color: rgba(180, 220, 150, 0.5); 
+}
+        
+#done li {
+    border-left: 6px solid rgba(180, 220, 150, 0.5);
+}
+        
+#trash h3 {
+    color: #e06666; 
+    background-color: rgba(240, 160, 160, 0.5); 
+}
+
+#trash li {
+    border-left: 6px solid rgba(240, 160, 160, 0.5);
+}
+        
+        
+#trash button {
+    background-color: rgb(202, 57, 57);
+    color: #ffffff;
+}
+ 

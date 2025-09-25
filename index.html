@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Веренцов Н.В.</title>
+    </head>
+    <body>
+        <header>
+            <div class="header-content">
+                <h1>Список задач</h1>
+            </div>
+        </header>
+
+        <main>
+            <form action="#" method="post">
+                <h2>Новая задача</h2>
+                <div class="form-row">
+                    <input type="text" id="new_task" name="new_task" placeholder="Название задачи" required>
+                    <input type="submit" value="+ Добавить">
+                </div>
+            </form>
+            
+            <section id="task">
+                <div class="task-item" id="backlog">
+                    <h3>Бэклог</h3>
+                    <ul>
+                        <li>Выучить JS</li>
+                        <li>Выучить React</li>
+                        <li>Сделать домашку</li>
+                    </ul>
+                </div>
+                
+                <div class="task-item" id="progress">
+                    <h3>В процессе</h3>
+                    <ul>
+                        <li>Выпить смузи</li>
+                        <li>Попить воды</li>
+                    </ul>
+                </div>
+                
+                <div class="task-item" id="done">
+                    <h3>Готово</h3>
+                    <ul>
+                        <li>Позвонить маме</li>
+                        <li>Погладить кота</li>
+                    </ul>
+                </div>
+                
+                <div class="task-item" id="trash">
+                    <h3>Корзина</h3>
+                    <ul>
+                        <li>Сходить погулять</li>
+                        <li>Прочитать войну и мир</li>
+                    </ul>
+                    <button>✕ Очистить</button>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
