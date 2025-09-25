@@ -1,3 +1,3 @@
 # User-Interface-development
 > [!TIP]
-> Lab 2 https://github.com/Nofus/User-Interface-development/tree/Todo-list
+> Lab 2 https://github.com/Nofus/Todo-list/tree/lab-2
