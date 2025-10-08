@@ -72,7 +72,7 @@ form input[type="submit"] {
     gap: 20px;
 }
         
-.task-item h3 {
+.task-list h3 {
     margin-top: 0;
     padding: 10px 15px;
     border-radius: 10px; 
@@ -80,24 +80,24 @@ form input[type="submit"] {
     display: inline-block;
 }
         
-.task-item ul {
+.task-list ul {
     list-style-type: none;
     padding-left: 0;
     margin: 0;
 }
         
-.task-item li {
+.task-list li {
     padding: 12px; 
     margin-bottom: 10px;
     border-radius: 10px;
     background-color: white;
 }
         
-.task-item li:last-child {
+.task-list li:last-child {
     margin-bottom: 0;
 }
         
-.task-item button {
+.task-list button {
     border: 1px solid #ddd;
     border-radius: 8px; 
     padding: 10px 15px; 
