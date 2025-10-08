@@ -1,10 +1,7 @@
 import {createElement} from '../framework/render.js';
 
 function createTaskBoardComponentTemplate() {
-  return (
-    `<section id="task">
-    </section>`
-  );
+  return `<section id="task"></section>`;
 }
 
 export default class TaskBoardComponent {

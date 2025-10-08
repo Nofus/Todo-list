@@ -1,10 +1,10 @@
 import {createElement} from '../framework/render.js';
 import TaskComponent from './task-component.js';
 
-function createTaskListComponentTemplate() {
+function createTaskListComponentTemplate(title, status) {
   return (
-    `<div class="task-list" id="backlog">
-      <h3>Название блока</h3>
+    `<div class="task-list" id="${status}">
+      <h3>${title}</h3>
       <ul class="task-item">
       </ul>
     </div>`
@@ -12,20 +12,26 @@ function createTaskListComponentTemplate() {
 }
 
 export default class TaskListComponent {
+  constructor(title, tasks = [], status) {
+    this.title = title;
+    this.tasks = tasks;
+    this.status = status;
+  }
+
   getTemplate() {
-    return createTaskListComponentTemplate();
+    return createTaskListComponentTemplate(this.title, this.status);
   }
 
   getElement() {
     if (!this.element) {
       this.element = createElement(this.getTemplate());
       
-      //4 задачи в каждый список
       const taskList = this.element.querySelector('.task-item');
-      for (let i = 0; i < 4; i++) {
-        const taskComponent = new TaskComponent();
+      
+      this.tasks.forEach(task => {
+        const taskComponent = new TaskComponent(task);
         taskList.insertAdjacentHTML('beforeend', taskComponent.getTemplate());
-      }
+      });
     }
     return this.element;
   }
