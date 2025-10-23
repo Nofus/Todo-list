@@ -1,5 +1,7 @@
-import {createElement} from '../framework/render.js';
+import { AbstractComponent } from '../framework/view/abstract-component.js';
 import TaskComponent from './task-component.js';
+import NullTaskComponent from './null-task-component.js';
+import { render } from '../framework/render.js';
 
 function createTaskListComponentTemplate(title, status) {
   return (
@@ -11,32 +13,33 @@ function createTaskListComponentTemplate(title, status) {
   );
 }
 
-export default class TaskListComponent {
+export default class TaskListComponent extends AbstractComponent {
   constructor(title, tasks = [], status) {
+    super(); 
     this.title = title;
     this.tasks = tasks;
     this.status = status;
   }
 
-  getTemplate() {
+  get template() {
     return createTaskListComponentTemplate(this.title, this.status);
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-      
-      const taskList = this.element.querySelector('.task-item');
-      
-      this.tasks.forEach(task => {
-        const taskComponent = new TaskComponent(task);
-        taskList.insertAdjacentHTML('beforeend', taskComponent.getTemplate());
-      });
-    }
-    return this.element;
+  afterElementCreate() {
+  const taskList = this.element.querySelector('.task-item');
+  
+  if (this.tasks.length === 0) {
+    this.#renderNullTask(taskList);
+  } else {
+    this.tasks.forEach(task => {
+      const taskComponent = new TaskComponent(task);
+      render(taskComponent, taskList);
+    });
   }
+}
 
-  removeElement() {
-    this.element = null;
-  }
+#renderNullTask(container) {
+  const nullTaskComponent = new NullTaskComponent();
+  render(nullTaskComponent, container);
+}
 }

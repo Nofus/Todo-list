@@ -165,3 +165,12 @@ form input[type="submit"] {
   text-align: center;
   font-size: 1em;
 }
+
+.null-task-item {
+  background-color: transparent !important;
+  border: 2px dashed #ddd !important;
+  color: #888;
+}
+
+
+

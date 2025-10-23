@@ -22,7 +22,7 @@ render(taskBoardComponent, mainContainer);
 
 //презентер
 const tasksBoardPresenter = new TasksBoardPresenter(
-  taskBoardComponent.getElement(),
+  taskBoardComponent.element,
   taskModel
 );
 

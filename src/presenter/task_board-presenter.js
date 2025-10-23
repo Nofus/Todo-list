@@ -1,7 +1,6 @@
 import TaskListComponent from '../view/task_list-component.js';
 import TrashButtonComponent from '../view/trash_button-component.js';
 import TaskBoardComponent from '../view/task_board-component.js';
-import TaskComponent from '../view/task-component.js';
 import {render} from '../framework/render.js';
 import {Status, StatusLabel} from '../const.js';
 
@@ -17,7 +16,7 @@ export default class TasksBoardPresenter {
   }
 
   init() {
-    this.#boardTasks = [...this.#tasksModel.getTasks()];
+    this.#boardTasks = [...this.#tasksModel.tasks];
     this.#renderBoard();
   }
 
@@ -27,34 +26,30 @@ export default class TasksBoardPresenter {
   }
 
   #renderTasks() {
+    Object.values(Status).forEach((status) => {
+      this.#renderTasksList(status);
+    });
+  }
 
-    for (let i = 0; i < 4; i++) {
-      const status = Object.values(Status)[i]; 
-      const statusLabel = StatusLabel[status];
-      
-      const tasksListComponent = new TaskListComponent(
-        statusLabel,
-        [], 
-        status
-      );
-      
-      render(tasksListComponent, this.#tasksBoardComponent.getElement());
-      
+  #renderTasksList(status) {
+    const statusLabel = StatusLabel[status];
+    const tasksForStatus = this.#boardTasks.filter(task => task.status === status);
+    
+    const tasksListComponent = new TaskListComponent(
+      statusLabel,
+      tasksForStatus,
+      status
+    );
+    
+    render(tasksListComponent, this.#tasksBoardComponent.element);
 
-      for (let j = 0; j < this.#boardTasks.length; j++) {
-        const task = this.#boardTasks[j];
-        if (task.status === status) {
-          const taskComponent = new TaskComponent(task);
-          render(taskComponent, tasksListComponent.getElement());
-        }
-      }
-
-
-      if (status === Status.TRASH) { 
-        const clearButtonComponent = new TrashButtonComponent();
-        render(clearButtonComponent, tasksListComponent.getElement());
-      }
+    if (status === Status.TRASH) { 
+      this.#renderClearButton(tasksListComponent.element);
     }
   }
+
+  #renderClearButton(container) {
+    const clearButtonComponent = new TrashButtonComponent();
+    render(clearButtonComponent, container);
+  }
 }
-    
