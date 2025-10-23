@@ -3,27 +3,34 @@ import FormAddTaskComponent from './view/form_add_task-component.js';
 import TaskBoardComponent from './view/task_board-component.js';
 import TasksBoardPresenter from './presenter/task_board-presenter.js';
 import TaskModel from './model/task-model.js';
-import {render, RenderPosition} from './framework/render.js';
+import { render, RenderPosition } from './framework/render.js';
 
 const taskModel = new TaskModel();
 
 const bodyContainer = document.querySelector('body');
 const mainContainer = document.querySelector('main');
 
-//заголовок
+// заголовок
 render(new HeaderComponent(), bodyContainer, RenderPosition.AFTERBEGIN);
 
-//форма
-render(new FormAddTaskComponent(), mainContainer, RenderPosition.AFTERBEGIN);
+// форма
+const formAddTaskComponent = new FormAddTaskComponent({ 
+  onClick: handleNewTaskButtonClick 
+});
+render(formAddTaskComponent, mainContainer, RenderPosition.AFTERBEGIN);
 
-//доска задач
+// доска задач
 const taskBoardComponent = new TaskBoardComponent();
 render(taskBoardComponent, mainContainer);
 
-//презентер
+// презентер
 const tasksBoardPresenter = new TasksBoardPresenter(
   taskBoardComponent.element,
   taskModel
 );
 
 tasksBoardPresenter.init();
+
+function handleNewTaskButtonClick() {
+  tasksBoardPresenter.createTask();
+}

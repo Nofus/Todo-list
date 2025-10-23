@@ -149,8 +149,16 @@ form input[type="submit"] {
         
         
 #trash button {
-    background-color: rgb(202, 57, 57);
-    color: #ffffff;
+  background-color: rgb(202, 57, 57);
+  color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-top: 15px;
+  width: 100%;
+  text-align: center;
+  font-size: 1em;
 }
 
 .clear-trash-btn {
@@ -172,5 +180,9 @@ form input[type="submit"] {
   color: #888;
 }
 
-
-
+#trash button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #cccccc !important;
+  color: #666666 !important;
+}
