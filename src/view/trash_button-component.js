@@ -28,4 +28,8 @@ export default class ClearTrashButtonComponent extends AbstractComponent {
   disableButton() {
     this.element.disabled = true;
   }
+
+  toggleDisabled(isDisabled) {
+    this.element.disabled = isDisabled;
+  }
 }

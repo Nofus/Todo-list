@@ -19,10 +19,10 @@ function createElement(template) {
 
 function render(component, container, place = RenderPosition.BEFOREEND) {
   if (!(component instanceof AbstractComponent)) {
-    throw new Error('Can render only components');
+    throw new Error('Только компоненты');
   }
   if (container === null) {
-    throw new Error('Container element doesn\'t exist');
+    throw new Error('Элемент-контейнер не существует');
   }
   container.insertAdjacentElement(place, component.element);
 }
