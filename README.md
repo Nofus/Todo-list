@@ -5,4 +5,5 @@
 > Lab 4 https://github.com/Nofus/Todo-list/tree/lab-4  
 > Lab 5 https://github.com/Nofus/Todo-list/tree/lab-5  
 > Lab 6 https://github.com/Nofus/Todo-list/tree/lab-6  
-> Lab 7 https://github.com/Nofus/Todo-list/tree/lab-7
+> Lab 7 https://github.com/Nofus/Todo-list/tree/lab-7  
+> Lab 8 https://github.com/Nofus/Todo-list/tree/lab-8
