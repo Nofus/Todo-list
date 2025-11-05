@@ -14,19 +14,41 @@ export default class TaskModel {
   }
 
   addTask(title) {
-  const newTask = {
-    title,
-    status: 'backlog',
-    id: generateID(),
-  };
-  this.#boardTasks.push(newTask);
-  this._notifyObservers();
-  return newTask;
+    const newTask = {
+      title,
+      status: 'backlog',
+      id: generateID(),
+    };
+    this.#boardTasks.push(newTask);
+    this._notifyObservers();
+    return newTask;
+  }
+
+  updateTaskStatus(taskId, newStatus, insertIndex = null) {
+    const task = this.#boardTasks.find(task => task.id === taskId);
+    if (task) {
+      this.#boardTasks = this.#boardTasks.filter(t => t.id !== taskId);
+      
+      if (insertIndex !== null) {
+        const tasksInNewStatus = this.#boardTasks.filter(t => t.status === newStatus);
+        const otherTasks = this.#boardTasks.filter(t => t.status !== newStatus);
+        
+        task.status = newStatus;
+        tasksInNewStatus.splice(insertIndex, 0, task);
+        
+        this.#boardTasks = [...otherTasks, ...tasksInNewStatus];
+      } else {
+        task.status = newStatus;
+        this.#boardTasks.push(task);
+      }
+      
+      this._notifyObservers();
+    }
   }
 
   clearTrash() {
-  this.#boardTasks = this.#boardTasks.filter(task => task.status !== 'trash');
-  this._notifyObservers();
+    this.#boardTasks = this.#boardTasks.filter(task => task.status !== 'trash');
+    this._notifyObservers();
   }
 
   addObserver(observer) {

@@ -32,20 +32,21 @@ export default class TasksBoardPresenter {
   }
 
   #renderTasksList(status) {
-  const statusLabel = StatusLabel[status];
-  const tasksForStatus = this.#tasksModel.tasks.filter(task => task.status === status);
-  
-  const tasksListComponent = new TaskListComponent(
-    statusLabel,
-    tasksForStatus,
-    status
-  );
-  
-  render(tasksListComponent, this.#tasksBoardComponent.element);
+    const statusLabel = StatusLabel[status];
+    const tasksForStatus = this.#tasksModel.tasks.filter(task => task.status === status);
+    
+    const tasksListComponent = new TaskListComponent(
+      statusLabel,
+      tasksForStatus,
+      status,
+      this.#handleTaskDrop.bind(this)  
+    );
+    
+    render(tasksListComponent, this.#tasksBoardComponent.element);
 
-  if (status === Status.TRASH) { 
-    this.#renderClearButton(tasksListComponent.element, tasksForStatus.length);
-  }
+    if (status === Status.TRASH) { 
+      this.#renderClearButton(tasksListComponent.element, tasksForStatus.length);
+    }
   }
 
   #renderClearButton(container, tasksCount) {
@@ -61,24 +62,24 @@ export default class TasksBoardPresenter {
   }
 
   createTask() {
-  const input = document.querySelector('#add_task');
-  const taskTitle = input.value.trim();
-  
-  if (!taskTitle) {
-    return;
+    const input = document.querySelector('#add_task');
+    const taskTitle = input.value.trim();
+    
+    if (!taskTitle) {
+      return;
+    }
+    
+    this.#tasksModel.addTask(taskTitle);
+    input.value = '';
   }
-  
-  this.#tasksModel.addTask(taskTitle);
-  input.value = '';
-}
 
   #clearBoard() {
     this.#tasksBoardComponent.element.innerHTML = '';
   }
 
   #handleModelChange() {
-  this.#clearBoard();
-  this.#renderBoard();
+    this.#clearBoard();
+    this.#renderBoard();
   }
 
   #handleClearTrash() {
@@ -86,6 +87,10 @@ export default class TasksBoardPresenter {
     if (this.#clearButtonComponent) {
       this.#clearButtonComponent.disableButton();
     }
-
   }
+
+  #handleTaskDrop(taskId, newStatus, insertIndex = null) {
+    this.#tasksModel.updateTaskStatus(taskId, newStatus, insertIndex);
+  }
+
 }
